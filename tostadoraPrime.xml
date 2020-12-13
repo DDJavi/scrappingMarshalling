@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<list>
+    <listName>tostadora list</listName>
+    <products>
+        <product>
+            <title>Russell Hobbs Adventure 23610-56 - Tostadora, 2 Ranuras Largas y Anchas, para 4 Rebanadas, Acero Inoxidable, Plata</title>
+            <price>44.56</price>
+            <stars>4,3 de 5 estrellas</stars>
+        </product>
+        <product>
+            <title>Bonsenkitchen Tostadoras Pan de 2 Rebanadas con 7 Niveles de Tostador y Bandeja para Migas, 750 W, Tostadora de Pan Automática con Función de Descongelar y Calentamiento,Negro TA8901</title>
+            <price>22.99</price>
+            <stars>4,1 de 5 estrellas</stars>
+        </product>
+        <product>
+            <title>Bonsenkitchen Tostadora Pan de 2 Rebanadas de Acero Inoxidable, Tostado con 7 Niveles y Bandeja para Migas, Tostadora de Pan con Función de Descongelar y Calentamiento, Plata TA8902</title>
+            <price>27.99</price>
+            <stars>3,9 de 5 estrellas</stars>
+        </product>
+        <product>
+            <title>Russell Hobbs Colours Plus 21395-56 – Tostadora, Ranura Larga y Ancha, para 2 Rebanadas, Acero Inoxidable, Crema</title>
+            <price>35.99</price>
+            <stars>4,4 de 5 estrellas</stars>
+        </product>
+        <product>
+            <title>Philips Daily HD2581/00 -Tostador 830 W, Doble Ranura, Color Blanco</title>
+            <price>22.0</price>
+            <stars>4,6 de 5 estrellas</stars>
+        </product>
+    </products>
+</list>
