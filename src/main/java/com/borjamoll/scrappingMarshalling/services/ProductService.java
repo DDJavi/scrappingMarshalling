@@ -1,6 +1,6 @@
 package com.borjamoll.scrappingMarshalling.services;
 
-import com.borjamoll.scrappingMarshalling.data.List;
+import com.borjamoll.scrappingMarshalling.data.Catalogue;
 import com.borjamoll.scrappingMarshalling.data.Product;
 import com.borjamoll.scrappingMarshalling.data.Search;
 import com.borjamoll.scrappingMarshalling.utils.JAXBxml;
@@ -19,10 +19,10 @@ import java.util.ArrayList;
 /**
  * private final String ->atajos de CSS para .select
  */
-@Service
+
 public class ProductService {
 
-    private final String amazon = "https://www.amazon.es/s?k=";
+    private final String AMAZON_URL = "https://www.amazon.es/s?k=";
     private final String normalSearch = "&dc&__mk_es_ES=ÅMÅŽÕÑ&qid=1606578057&rnid=831276031&ref=sr_nr_p_85_1";
     private final String primeSearch = "&rh=p_85%3A831314031&dc&__mk_es_ES=ÅMÅŽÕÑ&qid=1606578115&rnid=831276031&ref=sr_nr_p_85_1";
     private final String priceCSS = "span#price_inside_buybox";
@@ -36,7 +36,7 @@ public class ProductService {
     private final String xmlW = ".xml";
 
     JAXBxml _jaxb = new JAXBxml();
-    List list = new List();
+    Catalogue catalogue = new Catalogue();
     private Document doc;
     private ArrayList<Product> products = new ArrayList<>();
 
@@ -61,13 +61,13 @@ public class ProductService {
 
         if(key.isRead()) {
             if (key.isPrime()) {
-                list = _jaxb.convertXMLtoObject(key.getKey()+primeW+xmlW);
+                catalogue = _jaxb.convertXMLtoObject(key.getKey()+primeW+xmlW);
                 ObjectMapper objectMapper = new ObjectMapper();
-                return objectMapper.writeValueAsString(list);
+                return objectMapper.writeValueAsString(catalogue);
             }else{
-                list= _jaxb.convertXMLtoObject(key.getKey()+xmlW);
+                catalogue = _jaxb.convertXMLtoObject(key.getKey()+xmlW);
                 ObjectMapper objectMapper = new ObjectMapper();
-                return objectMapper.writeValueAsString(list);
+                return objectMapper.writeValueAsString(catalogue);
             }
         }
 
@@ -76,9 +76,9 @@ public class ProductService {
         }
         try {
             if(key.isPrime()){
-                doc = Jsoup.connect(amazon + key.getKey().replace(" ", "+") + primeSearch).get();
+                doc = Jsoup.connect(AMAZON_URL + key.getKey().replace(" ", "+") + primeSearch).get();
             }else{
-                doc = Jsoup.connect(amazon + key.getKey() + normalSearch).get();
+                doc = Jsoup.connect(AMAZON_URL + key.getKey() + normalSearch).get();
             }
 
         } catch (Exception e) {
@@ -88,13 +88,13 @@ public class ProductService {
         if(key.getTotal()>1) products = productList(sections, key.getTotal());
         else products = productList(sections,6);
 
-        list.setListName(key.getKey() + "List");
-        list.setProduct(products);
+        catalogue.setListName(key.getKey() + "Catalogue");
+        catalogue.setProduct(products);
         if(key.isSave()) {
             if(key.isPrime()) {
-                _jaxb.convertObjecttoXML(list, key.getKey() + "Prime.xml");
+                _jaxb.convertObjecttoXML(catalogue, key.getKey() + "Prime.xml");
             }else{
-                _jaxb.convertObjecttoXML(list, key.getKey() + ".xml");
+                _jaxb.convertObjecttoXML(catalogue, key.getKey() + ".xml");
             }
         }
         /**
@@ -109,7 +109,7 @@ public class ProductService {
         **/
 
         ObjectMapper objectMapper = new ObjectMapper();
-        return objectMapper.writeValueAsString(list);
+        return objectMapper.writeValueAsString(catalogue);
     }
 
     public ArrayList<Product> productList(Elements list, int total){
@@ -134,6 +134,7 @@ public class ProductService {
                 }
             } catch (Exception e) {
                 System.out.println("Lost product");
+                i--;
             }
         }
 

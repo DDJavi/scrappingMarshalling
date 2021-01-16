@@ -1,6 +1,6 @@
 package com.borjamoll.scrapping;
 
-import com.borjamoll.scrappingMarshalling.data.List;
+import com.borjamoll.scrappingMarshalling.data.Catalogue;
 import com.borjamoll.scrappingMarshalling.data.Product;
 import com.borjamoll.scrappingMarshalling.data.Search;
 import com.borjamoll.scrappingMarshalling.services.ProductService;
@@ -105,12 +105,12 @@ class ScrappingApplicationTests {
 		ArrayList<Product> products = new ArrayList<>();
 		products.add(new Product("hola", 0.54,"5 stars"));
 		products.add(new Product("adios", 0.55, "0 stars"));
-		List list = new List();
-		list.setListName("Catalogo");
-		list.setProduct(products);
+		Catalogue catalogue = new Catalogue();
+		catalogue.setListName("Catalogo");
+		catalogue.setProduct(products);
 
 		JAXBxml jaxb = new JAXBxml();
-		jaxb.convertObjecttoXML(list,"hola.xml");
+		jaxb.convertObjecttoXML(catalogue,"hola.xml");
 	}
 	@Test
 	void runtest() throws JAXBException, JsonProcessingException {
@@ -135,9 +135,9 @@ class ScrappingApplicationTests {
 	@Test
 	void unmarshall() throws JAXBException, JsonProcessingException {
 		JAXBxml jaxb = new JAXBxml();
-		List list = jaxb.convertXMLtoObject("tostadoraPrime.xml");
+		Catalogue catalogue = jaxb.convertXMLtoObject("tostadoraPrime.xml");
 		ObjectMapper objectMapper = new ObjectMapper();
-		System.out.println(objectMapper.writeValueAsString(list));
+		System.out.println(objectMapper.writeValueAsString(catalogue));
 
 	}
 }

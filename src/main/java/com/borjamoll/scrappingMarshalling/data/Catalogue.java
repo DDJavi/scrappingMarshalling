@@ -13,8 +13,8 @@ import java.util.ArrayList;
 @NoArgsConstructor
 @Setter
 @Getter
-@XmlRootElement(name="list")
-public class List {
+@XmlRootElement(name="catalogue")
+public class Catalogue {
     private String listName;
     private ArrayList<Product> product = new ArrayList<>();
 
